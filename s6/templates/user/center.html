@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+</head>
+<body>
+<div><a href="{{ url_for('user.register') }}">注册</a><a href="">登陆</a></div>
+<div>
+    <h1>用户信息如下：</h1>
+    {% if users %}
+    <table border="1" cellpadding="0" width="50%">
+    <tr>
+        <th>序号</th>
+        <th>用户名</th>
+        <th>LoginID</th>
+        <th>注册时间</th>
+        <th>操作</th>
+    </tr>
+        {% for user in users %}
+        <tr>
+            <th>{{ loop.index }}</th>
+            <th>{{ user.username }}</th>
+            <th>{{ user.loginid }}</th>
+            <th>{{ user.phone }}</th>
+            <th><a href="">修改</a>  <a href="">删除 </a></th>
+        </tr>
+     {% endfor %}
+
+     </table>
+
+    {% else %}
+    <p style="color:red; font-size:20px">当前没有任何用户</p>
+    {% endif %}
+
+</div>
+</body>
+</html>
