@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>用户中心</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 <div><a href="{{ url_for('user.register') }}">注册</a><a href="">登陆</a></div>
 <div>
+    <input type="text" name="search" placeholder="输入要查找的内容"> <input id='search' type="button" value="搜索">
     <h1>用户信息如下：</h1>
+    <a href="{{ 'user.index' }}">返回</a>
     {% if users %}
     <table border="1" cellpadding="0" width="50%">
     <tr>
@@ -34,5 +37,11 @@
     {% endif %}
 
 </div>
+<script>
+    $('#search').click(function(){
+       let content = $('input[name="search"]').val();
+    location.href = '{{ url_for('user.search_name') }}?search='+ content
+    })
+</script>
 </body>
 </html>
